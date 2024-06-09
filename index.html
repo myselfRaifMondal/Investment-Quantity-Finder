@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Shares Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"] {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #results {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <h2>Stock Shares Calculator</h2>
+    <label for="numStocks">Enter the number of stocks:</label>
+    <input type="number" id="numStocks" min="1" value="1"><br>
+    <div id="inputs"></div>
+    <button onclick="calculateShares()">Calculate Shares</button>
+    <div id="results"></div>
+
+    <script>
+        function createInputs() {
+            var numStocks = document.getElementById("numStocks").value;
+            var inputsDiv = document.getElementById("inputs");
+            inputsDiv.innerHTML = "";
+
+            for (var i = 1; i <= numStocks; i++) {
+                inputsDiv.innerHTML += `
+                    <label for="cmp${i}">Stock ${i} CMP:</label>
+                    <input type="number" id="cmp${i}" step="0.01" required>
+                    <label for="investment${i}">Investment ${i}:</label>
+                    <input type="number" id="investment${i}" step="0.01" required><br>
+                `;
+            }
+        }
+
+        function calculateShares() {
+            var numStocks = document.getElementById("numStocks").value;
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            for (var i = 1; i <= numStocks; i++) {
+                var cmp = parseFloat(document.getElementById("cmp" + i).value);
+                var investment = parseFloat(document.getElementById("investment" + i).value);
+                var margin = cmp / 5;
+                var numShares = Math.floor(investment / margin);
+
+                resultsDiv.innerHTML += `Stock ${i}: Number of shares = ${numShares}<br>`;
+            }
+        }
+
+        document.getElementById("numStocks").addEventListener("input", createInputs);
+        createInputs(); // Create inputs initially
+    </script>
+</body>
+</html>
+
