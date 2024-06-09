@@ -3,4 +3,4 @@ This is an application which is used to find the required quantity for intrady.
 
 ## Screenshots
 ### Mac Version
-![Mac Version Application Run](https://imgur.com/a/hzsGYy6)
+![Mac Version Application Run]([https://imgur.com/a/hzsGYy6](https://i.imgur.com/qcWS5M3.png))
